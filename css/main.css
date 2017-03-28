@@ -23,7 +23,8 @@ fieldset {
 }
 
 .recipe {
-	margin-top: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .recipe-summary {
@@ -42,10 +43,23 @@ img {
 .recipe-information {
 	font-size: 1.25em;
 	position: relative;
-	top: 25px;
+}
+
+@media only screen and (min-width: 640px) {
+	.recipe-information {
+		top: 20px;
+	}
 }
 
 .information {
 	display: block;
 	margin-bottom: 5px;
+}
+
+.ingredients-list {
+	margin-top: 10px;
+}
+
+.js-display-ingredients {
+	display: none;
 }
