@@ -8,7 +8,8 @@ function getDataFromAPI(searchTerm, callback) {
 			app_key: 'ada25e7ca4cf4253efd61e25c30c8fa3',
 			q: searchTerm,
 		},
-		success: callback
+		success: callback,
+		dataType: 'jsonp'
 	}
 	$.ajax(settings);
 }
@@ -18,6 +19,7 @@ function displayDataFromAPI(data) {
 	//so far returns jsonp successfully
 }
 
+//handler 
 function submitHandler() {
 	$('main').on('click', '.js-search-recipe', function(event) {
 		event.preventDefault();
