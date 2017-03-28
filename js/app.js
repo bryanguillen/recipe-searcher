@@ -1,3 +1,9 @@
+//state
+var state = {
+	from: 0,
+	to: 3
+}
+
 var URL_END_POINT = 'https://api.edamam.com/search';
 
 function getDataFromAPI(searchTerm, callback) {
@@ -7,6 +13,8 @@ function getDataFromAPI(searchTerm, callback) {
 			app_id: 'b911c081',
 			app_key: 'ada25e7ca4cf4253efd61e25c30c8fa3',
 			q: searchTerm,
+			from: state.from,
+			to: state.to
 		},
 		success: callback,
 		dataType: 'jsonp'
@@ -26,7 +34,8 @@ function displayDataFromAPI(data) {
 			var servings = item.recipe.yield;
 			//calories per serving
 			var caloricIntake = item.recipe.calories / servings;
-			result += createRecipeHTML(recipeName, img, servings, caloricIntake);
+			var ingredients = item.recipe.ingredientLines.join(', ');
+			result += createRecipeHTML(recipeName, img, servings, caloricIntake, ingredients);
 		});
 	}
 	else{
@@ -36,7 +45,7 @@ function displayDataFromAPI(data) {
 }
 
 //dom manipulation 
-function createRecipeHTML(recipeName, img, servings, caloricIntake) {
+function createRecipeHTML(recipeName, img, servings, caloricIntake, ingredients) {
 	return   	'<div class="row recipe">' +
 					'<div class="col-12">' +
 						'<div class="row">' +
@@ -50,9 +59,14 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake) {
 								'<span class="information">' + servings + '</span>' +
 								'<span class="information">' + caloricIntake + '</span>' +
 								'<span class="information health-label-section"><strong>Health Labels</strong></span>' +
-								'<span class="information health-label">Wheat Free</span>' +
-								'<span class="information health-label">Gluten Free</span>' +
+								'<span class="information health-label">' + '</span>' +
+								'<span class="information show-ingredients">Click Here</span>' +
 							'</div>' +
+						'</div>' +
+					'</div>' +
+					'<div class="row ingredients-list js-display-ingredients">' +
+						'<div class="col-12">' +
+							'<span class="ingredients">Ingredients: ' +  ingredients +  '</span>' +
 						'</div>' +
 					'</div>' +
 				'</div>';
