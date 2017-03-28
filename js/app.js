@@ -82,7 +82,18 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, 
 
 function renderRecipes(recipes) {
 	if(state.from < 5) {
-		$('main').html('<div class="recipe-container">' + 
+		$('main').html(
+						'<div class="row new-search">' +
+							'<div class="col-12">' +
+								'<form action="#" class="search-form">' +
+									'<fieldset name="search-recipes">' +
+										'<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query" required />' +
+										'<button class="search-button js-search-recipe">Search</button>' +
+									'</fieldset>' +
+								'</form>' +
+							'</div>' +
+						'</div>' +
+						'<div class="recipe-container">' + 
 							recipes + 
 						'</div>' +
 						'<div class="more-recipes">' +

@@ -45,12 +45,6 @@ img {
 	position: relative;
 }
 
-@media only screen and (min-width: 640px) {
-	.recipe-information {
-		top: 20px;
-	}
-}
-
 .information {
 	display: block;
 	margin-bottom: 5px;
@@ -67,4 +61,14 @@ img {
 .more-recipes {
 	text-align: center;
 	margin-top: 15px;
+}
+
+@media only screen and (min-width: 640px) {
+	.recipe-information {
+		top: 20px;
+	}
+}
+
+.new-search {
+	margin-left: 5px;
 }
