@@ -48,7 +48,7 @@ function displayDataFromAPI(data) {
 function createRecipeHTML(recipeName, img, servings, caloricIntake, ingredients) {
 	return   	'<div class="row recipe">' +
 					'<div class="col-12">' +
-						'<div class="row">' +
+						'<div class="row js-shown-information">' +
 							'<div class="col-12 recipe-label">' + recipeName  + '</div>' +
 						'</div>' +
 						'<div class="row recipe-summary">' +
@@ -60,13 +60,13 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, ingredients)
 								'<span class="information">' + caloricIntake + '</span>' +
 								'<span class="information health-label-section"><strong>Health Labels</strong></span>' +
 								'<span class="information health-label">' + '</span>' +
-								'<span class="information show-ingredients">Click Here</span>' +
+								'<button class="information js-click-show"><span>See Ingredients</span></button>' +
 							'</div>' +
 						'</div>' +
-					'</div>' +
-					'<div class="row ingredients-list js-display-ingredients">' +
-						'<div class="col-12">' +
-							'<span class="ingredients">Ingredients: ' +  ingredients +  '</span>' +
+						'<div class="row ingredients-list js-display-ingredients">' +
+							'<div class="col-12 ingredients-list">' +
+								'<span class="ingredients">Ingredients: ' +  ingredients +  '</span>' +
+							'</div>' +
 						'</div>' +
 					'</div>' +
 				'</div>';
@@ -77,6 +77,13 @@ function renderRecipes(recipes) {
 }
 
 //handler 
+function seeIngredientsHandler() {
+	$('main').on('click', '.js-click-show', function(event) {
+		event.preventDefault();
+		$(this).parents('.recipe-summary').next().toggleClass('js-display-ingredients');
+	});
+}
+
 function submitHandler() {
 	$('main').on('click', '.js-search-recipe', function(event) {
 		event.preventDefault();
@@ -87,4 +94,5 @@ function submitHandler() {
 
 $(function() {
 	submitHandler();
+	seeIngredientsHandler();
 });
