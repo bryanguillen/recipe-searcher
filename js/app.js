@@ -16,7 +16,9 @@ function getDataFromAPI(searchTerm, callback) {
 
 function displayDataFromAPI(data) {
 	//get the title, picture, ingredients, and then calories information 
-	//along with serving. 
+	//along with serving.
+	//playing around in console
+	//TODO: remove these variables after know how to manipulate 
 	var recipeName = data.hits[0].recipe.label;
 	var img = data.hits[0].recipe.image;
 	var ingredients = data.hits[0].recipe.ingredientLines;
