@@ -45,11 +45,11 @@ function displayDataFromAPI(data) {
 			var ingredients = item.recipe.ingredientLines.join(', ');
 			result += createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, ingredients);
 		});
+		renderRecipes(result);
 	}
 	else{
-		//add error message
+		renderErrorMessage();
 	}
-	renderRecipes(result);
 }
 
 //dom manipulation 
@@ -103,6 +103,25 @@ function renderRecipes(recipes) {
 	else {
 		$('.recipe-container').append(recipes);
 	}
+}
+
+function renderErrorMessage() {
+	$('main').html(
+					'<div class="row new-search">' +
+						'<div class="col-12">' +
+							'<form action="#" class="search-form">' +
+								'<fieldset name="search-recipes">' +
+									'<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query" required />' +
+									'<button class="search-button js-search-recipe">Search</button>' +
+								'</fieldset>' +
+							'</form>' +
+						'</div>' +
+					'</div>' +
+					'<div class="row error-msg">' + 
+						'<div class="col-12">' +
+							'<h1>No Results Found</h1>' + 
+						'</div>' + 
+					'</div>');
 }
 
 //handler 
