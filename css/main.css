@@ -41,7 +41,7 @@ img {
 }
 
 .recipe-information {
-	font-size: 1.25em;
+	font-size: 1em;
 	position: relative;
 }
 
@@ -62,4 +62,9 @@ img {
 
 .js-display-ingredients {
 	display: none;
+}
+
+.more-recipes {
+	text-align: center;
+	margin-top: 15px;
 }

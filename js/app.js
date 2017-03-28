@@ -1,7 +1,15 @@
 //state
 var state = {
 	from: 0,
-	to: 3
+	to: 5,
+	currentQuery: null
+}
+
+function resetState(state) {
+	//reset state for when new search is submitted
+	state.from = 0;
+	state.to = 5;
+	state.currentQuery = null; 
 }
 
 var URL_END_POINT = 'https://api.edamam.com/search';
@@ -32,10 +40,10 @@ function displayDataFromAPI(data) {
 			var recipeName = item.recipe.label;
 			var img = item.recipe.image;
 			var servings = item.recipe.yield;
-			//calories per serving
-			var caloricIntake = item.recipe.calories / servings;
+			var caloricIntake = Math.floor(item.recipe.calories / servings); //calories per serving
+			var healthTags = item.recipe.healthLabels.join(', ');
 			var ingredients = item.recipe.ingredientLines.join(', ');
-			result += createRecipeHTML(recipeName, img, servings, caloricIntake, ingredients);
+			result += createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, ingredients);
 		});
 	}
 	else{
@@ -45,7 +53,7 @@ function displayDataFromAPI(data) {
 }
 
 //dom manipulation 
-function createRecipeHTML(recipeName, img, servings, caloricIntake, ingredients) {
+function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, ingredients) {
 	return   	'<div class="row recipe">' +
 					'<div class="col-12">' +
 						'<div class="row js-shown-information">' +
@@ -56,16 +64,16 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, ingredients)
 								'<img src="' + img + '">' +
 							'</div>' +
 							'<div class="col-6 recipe-information">' +
-								'<span class="information">' + servings + '</span>' +
-								'<span class="information">' + caloricIntake + '</span>' +
+								'<span class="information">Servings: ' + servings + '</span>' +
+								'<span class="information">Calories/serving: ' + caloricIntake + '</span>' +
 								'<span class="information health-label-section"><strong>Health Labels</strong></span>' +
-								'<span class="information health-label">' + '</span>' +
+								'<span class="information health-label">' + healthTags + '</span>' +
 								'<button class="information js-click-show"><span>See Ingredients</span></button>' +
 							'</div>' +
 						'</div>' +
 						'<div class="row ingredients-list js-display-ingredients">' +
 							'<div class="col-12 ingredients-list">' +
-								'<span class="ingredients">Ingredients: ' +  ingredients +  '</span>' +
+								'<span class="ingredients"><strong>Ingredients:</strong> ' +  ingredients +  '</span>' +
 							'</div>' +
 						'</div>' +
 					'</div>' +
@@ -73,10 +81,29 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, ingredients)
 }
 
 function renderRecipes(recipes) {
-	$('main').html('<div class="recipe-container">' + recipes + '</div>');
+	if(state.from < 5) {
+		$('main').html('<div class="recipe-container">' + 
+							recipes + 
+						'</div>' +
+						'<div class="more-recipes">' +
+							'<button class="js-more-recipes">More Recipes</button>' +
+						'</div>');
+	}
+	else {
+		$('.recipe-container').append(recipes);
+	}
 }
 
 //handler 
+function moreRecipesHandler() {
+	$('main').on('click', '.js-more-recipes', function(event) {
+		event.preventDefault();
+		state.from += 5;
+		state.to += 5;
+		getDataFromAPI(state.currentQuery, displayDataFromAPI);
+	});
+}
+
 function seeIngredientsHandler() {
 	$('main').on('click', '.js-click-show', function(event) {
 		event.preventDefault();
@@ -87,7 +114,9 @@ function seeIngredientsHandler() {
 function submitHandler() {
 	$('main').on('click', '.js-search-recipe', function(event) {
 		event.preventDefault();
+		resetState(state);
 		var query = $('main').find('.food-query').val();
+		state.currentQuery = query //keep track of query in state global
 		getDataFromAPI(query, displayDataFromAPI);
 	});
 }
@@ -95,4 +124,5 @@ function submitHandler() {
 $(function() {
 	submitHandler();
 	seeIngredientsHandler();
+	moreRecipesHandler();
 });
