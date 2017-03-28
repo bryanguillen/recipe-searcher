@@ -15,22 +15,51 @@ function getDataFromAPI(searchTerm, callback) {
 }
 
 function displayDataFromAPI(data) {
-	//get the title, picture, ingredients, and then calories information 
-	//along with serving.
-	//playing around in console
-	//TODO: remove these variables after know how to manipulate 
-	var recipeName = data.hits[0].recipe.label;
-	var img = data.hits[0].recipe.image;
-	var ingredients = data.hits[0].recipe.ingredientLines;
-	var servings = data.hits[0].recipe.yield;
-	var caloricIntake = data.hits[0].recipe.calories;
-	var diet = data.hits[0].recipe.dietLabels;
-	console.log(recipeName);
-	console.log(img);
-	console.log(ingredients);
-	console.log(servings);
-	console.log(caloricIntake);
-	console.log(diet);
+	//hits is array that contains the recipes..
+	var recipes = data.hits;
+	var length = recipes.length;
+	var result = '';
+	if(length > 0) {
+		recipes.forEach(function(item) {
+			var recipeName = item.recipe.label;
+			var img = item.recipe.image;
+			var servings = item.recipe.yield;
+			//calories per serving
+			var caloricIntake = item.recipe.calories / servings;
+			result += createRecipeHTML(recipeName, img, servings, caloricIntake);
+		});
+	}
+	else{
+		//add error message
+	}
+	renderRecipes(result);
+}
+
+//dom manipulation 
+function createRecipeHTML(recipeName, img, servings, caloricIntake) {
+	return   	'<div class="row recipe">' +
+					'<div class="col-12">' +
+						'<div class="row">' +
+							'<div class="col-12 recipe-label">' + recipeName  + '</div>' +
+						'</div>' +
+						'<div class="row recipe-summary">' +
+							'<div class="col-6 img">' +
+								'<img src="' + img + '">' +
+							'</div>' +
+							'<div class="col-6 recipe-information">' +
+								'<span class="information">' + servings + '</span>' +
+								'<span class="information">' + caloricIntake + '</span>' +
+								'<span class="information health-label-section"><strong>Health Labels</strong></span>' +
+								'<span class="information health-label">Wheat Free</span>' +
+								'<span class="information health-label">Gluten Free</span>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+				'</div>';
+}
+
+function renderRecipes(recipes) {
+	$('main').html('<div class="recipe-container">' + recipes + '</div>');
 }
 
 //handler 
