@@ -66,7 +66,7 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, 
 							'<div class="col-6 recipe-information">' +
 								'<span class="information">Servings: ' + servings + '</span>' +
 								'<span class="information">Calories/serving: ' + caloricIntake + '</span>' +
-								'<span class="information health-label-section"><strong>Health Labels</strong></span>' +
+								'<span class="information health-label-section"><strong>Health Labels:</strong></span>' +
 								'<span class="information health-label">' + healthTags + '</span>' +
 								'<button class="information js-click-show"><span>See Ingredients</span></button>' +
 							'</div>' +

@@ -6,9 +6,12 @@
 
 	<!-- Responsive viewport tag, tells small screens that it's responsive -->
   	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<!-- Normalize.css, a cross-browser reset file -->
   	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+
+  	<!-- google fonts -- >
+  	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 
   	<!-- Gridd.css for responsiveness and Main.css for main stylesheet -->
   	<link rel="stylesheet" type="text/css" href="css/grid.css">
@@ -17,20 +20,22 @@
 <body>
 	<main>
 		<!-- search template -->
-		<div class="row container">
-			<div class="col-12">
-				<h1>Get Recipe Ideas!</h1>
-				<h4>Enter your favorite foods in order to get recipe ideas.</h4>
+		<div class="welcoming-container">
+			<div class="row welcoming-headers">
+				<div class="col-12">
+					<h1>Get Healthy Recipe Ideas</h1>
+					<h4>Enter your favorite food ideas in order to get recipe ideas.</h4>
+				</div>
 			</div>
-		</div>
-		<div class="row container">
-			<div class="col-12">
-				<form action="#" class="search-form">
-					<fieldset name="search-recipes">
-						<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query" required />
-						<button class="search-button js-search-recipe">Search</button>
-					</fieldset>
-				</form>
+			<div class="row welcoming-headers">
+				<div class="col-12">
+					<form action="#" class="search-form">
+						<fieldset name="search-recipes">
+							<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query" required />
+							<button class="search-button js-search-recipe">Search</button>
+						</fieldset>
+					</form>
+				</div>
 			</div>
 		</div>
 	</main>
