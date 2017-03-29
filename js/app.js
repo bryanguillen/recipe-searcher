@@ -97,7 +97,7 @@ function renderRecipes(recipes) {
 							recipes + 
 						'</div>' +
 						'<div class="more-recipes">' +
-							'<button class="js-more-recipes">More Recipes</button>' +
+							'<button class="more-recipes-button js-more-recipes">More Recipes</button>' +
 						'</div>');
 	}
 	else {

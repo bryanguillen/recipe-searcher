@@ -6,6 +6,9 @@ body {
 	font-family: 'Open Sans Condensed'
 }
 
+button {
+	display: inline-block;
+}
 /*** initial styling for the landing page ***/
 fieldset {
 	border: 0;
@@ -126,4 +129,12 @@ img {
 
 .new-search {
 	margin-left: 5px;
+}
+
+.more-recipes-button {
+	background-color: orange;
+	border: 1px solid white;
+	color: white;
+	height: 50px;
+	border-radius: 5%;
 }
