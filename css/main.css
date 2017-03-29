@@ -15,6 +15,25 @@ fieldset {
 	text-align: center;
 	height: 100vh;
 	padding-top: 200px;
+	background: linear-gradient(
+      	rgba(0, 0, 0, 0.7),
+      	rgba(0, 0, 0, 0.7)
+    	), 
+		url('../images/welcoming-background.jpg')
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.welcoming-container h1 {
+	font-size: 2.5em;
+}
+
+.welcoming-container h4 {
+	font-size: 1.5em;
+}
+
+.welcoming-container h1, .welcoming-container h4 {
+	color: white;
 }
 
 /*** recipe list ***/
@@ -25,6 +44,10 @@ fieldset {
 @media only screen and (max-width: 640px) {
 	.recipe-container {
 		text-align: center;
+	}
+
+	.welcoming-container {
+		padding-top: 100px;
 	}
 }
 
