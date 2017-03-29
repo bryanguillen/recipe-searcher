@@ -61,7 +61,7 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, 
 						'</div>' +
 						'<div class="row recipe-summary">' +
 							'<div class="col-6 img">' +
-								'<img src="' + img + '">' +
+								'<a href="' + img + '" data-lightbox="recipe-pic"> <img src="' + img + '"></a>' +
 								'<span class="information">(Click To Enlarge)</span>' +
 							'</div>' +
 							'<div class="col-6 recipe-information">' +
