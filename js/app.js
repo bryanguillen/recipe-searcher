@@ -83,7 +83,7 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, 
 
 function renderRecipes(recipes) {
 	if(state.from < 5) {
-		$('main').html(
+		$('main').html( '<div class="nav-container">' +
 						'<div class="row new-search">' +
 							'<div class="col-12">' +
 								'<form action="#" class="search-form">' +
@@ -94,6 +94,7 @@ function renderRecipes(recipes) {
 								'</form>' +
 							'</div>' +
 						'</div>' +
+						'</div>'+
 						'<div class="recipe-container">' + 
 							recipes + 
 						'</div>' +
