@@ -16,10 +16,10 @@ fieldset {
 	height: 100vh;
 	padding-top: 200px;
 	background: linear-gradient(
-      	rgba(0, 0, 0, 0.7),
-      	rgba(0, 0, 0, 0.7)
-    	), 
-		url('../images/welcoming-background.jpg')
+      				rgba(0, 0, 0, 0.7),
+      				rgba(0, 0, 0, 0.7)
+    			),
+				url('../images/welcoming-background.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -36,6 +36,24 @@ fieldset {
 	color: white;
 }
 
+.food-query {
+	width: calc(100% / 3);
+	padding-left: 15px;
+	border: 1px solid orange;
+}
+
+.search-button {
+	width: calc(100% / 5);
+	background-color: orange;
+	border: 1px solid white;
+	color: white;
+}
+
+.food-query, .search-button {
+	height: 50px;
+	border-radius: 5%;
+}
+
 /*** recipe list ***/
 .recipe-container {
 	margin-top: 15px;
@@ -48,6 +66,14 @@ fieldset {
 
 	.welcoming-container {
 		padding-top: 100px;
+	}
+
+	.food-query, .search-button {
+		width: calc(100% / 2);
+	}
+
+	.search-button {
+		margin-top: 10px
 	}
 }
 
