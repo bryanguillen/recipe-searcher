@@ -1,3 +1,4 @@
+/** universal styling ***/
 body * {
 	box-sizing: border-box;
 }
@@ -9,6 +10,7 @@ body {
 button {
 	display: inline-block;
 }
+
 /*** initial styling for the landing page ***/
 fieldset {
 	border: 0;
@@ -60,24 +62,7 @@ fieldset {
 /*** recipe list ***/
 .recipe-container {
 	margin-top: 15px;
-}
-
-@media only screen and (max-width: 640px) {
-	.recipe-container {
-		text-align: center;
-	}
-
-	.welcoming-container {
-		padding-top: 100px;
-	}
-
-	.food-query, .search-button {
-		width: calc(100% / 2);
-	}
-
-	.search-button {
-		margin-top: 10px
-	}
+	margin-bottom: 15px;
 }
 
 .recipe {
@@ -121,20 +106,48 @@ img {
 	margin-top: 15px;
 }
 
-@media only screen and (min-width: 640px) {
-	.recipe-information {
-		top: 20px;
-	}
-}
-
 .new-search {
 	margin-left: 5px;
 }
 
-.more-recipes-button {
+.more-recipes-button, .show-ingredients {
 	background-color: orange;
 	border: 1px solid white;
 	color: white;
-	height: 50px;
 	border-radius: 5%;
+}
+
+.more-recipes-button {
+	height: 50px;
+}
+
+.show-ingredients {
+	height: 35px;
+	margin: 0 auto;
+}
+
+/*** media queries **/
+
+@media only screen and (max-width: 640px) {
+	.recipe-container {
+		text-align: center;
+	}
+
+	.welcoming-container {
+		padding-top: 100px;
+	}
+
+	.food-query, .search-button {
+		width: calc(100% / 2);
+	}
+
+	.search-button {
+		margin-top: 10px
+	}
+}
+
+@media only screen and (min-width: 640px) {
+	.recipe-information {
+		top: 20px;
+	}
 }

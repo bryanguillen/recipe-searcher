@@ -56,7 +56,7 @@ function displayDataFromAPI(data) {
 function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, ingredients) {
 	return   	'<div class="row recipe">' +
 					'<div class="col-12">' +
-						'<div class="row js-shown-information">' +
+						'<div class="row">' +
 							'<div class="col-12 recipe-label">' + recipeName  + '</div>' +
 						'</div>' +
 						'<div class="row recipe-summary">' +
@@ -68,7 +68,7 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, 
 								'<span class="information">Calories/serving: ' + caloricIntake + '</span>' +
 								'<span class="information health-label-section"><strong>Health Labels:</strong></span>' +
 								'<span class="information health-label">' + healthTags + '</span>' +
-								'<button class="information js-click-show"><span>See Ingredients</span></button>' +
+								'<button class="information show-ingredients js-click-show"><span>See Ingredients</span></button>' +
 							'</div>' +
 						'</div>' +
 						'<div class="row ingredients-list js-display-ingredients">' +
