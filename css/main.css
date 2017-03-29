@@ -5,9 +5,6 @@ body * {
 
 body {
 	font-family: 'Comic Sans MS';
-}
-
-main {
 	background-color: #f5f5f0;
 }
 
@@ -66,18 +63,13 @@ fieldset {
 /*** recipe list ***/
 .recipe-container {
 	margin-top: 15px;
-	margin-bottom: 15px;
-}
-
-.recipe-container, .new-search {
-	/**background-color: #f5f5f0;****/
 }
 
 .recipe {
 	margin-top: 15px;
 	margin-bottom: 15px;
 	background-color: white;
-	padding-bottom: 25px;
+	padding-bottom: 30px;
 }
 
 .recipe-summary {
@@ -114,10 +106,15 @@ img {
 .more-recipes {
 	text-align: center;
 	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 .new-search {
-	padding-left: 0px;
+	width: 100%;
+}
+
+.new-search-button {
+	margin-left: 10px;
 }
 
 .new-search-fieldset {
@@ -168,5 +165,9 @@ img {
 @media only screen and (min-width: 640px) {
 	.recipe-information {
 		top: 20px;
+	}
+
+	.new-query {
+		margin-right: 15px;
 	}
 }

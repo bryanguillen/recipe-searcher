@@ -62,10 +62,11 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, 
 						'<div class="row recipe-summary">' +
 							'<div class="col-6 img">' +
 								'<img src="' + img + '">' +
+								'<span class="information">(Click To Enlarge)</span>' +
 							'</div>' +
 							'<div class="col-6 recipe-information">' +
-								'<span class="information">Servings: ' + servings + '</span>' +
-								'<span class="information">Calories/serving: ' + caloricIntake + '</span>' +
+								'<span class="information"><strong>Servings:</strong> ' + servings + '</span>' +
+								'<span class="information"><strong>Calories/serving:</strong> ' + caloricIntake + '</span>' +
 								'<span class="information health-label-section"><strong>Health Labels:</strong></span>' +
 								'<span class="information health-label">' + healthTags + '</span>' +
 								'<button class="information show-ingredients js-click-show"><span>See Ingredients</span></button>' +
@@ -87,7 +88,7 @@ function renderRecipes(recipes) {
 							'<div class="col-12">' +
 								'<form action="#" class="search-form">' +
 									'<fieldset name="search-recipes" class="new-search-fieldset">' +
-										'<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query" required />' +
+										'<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query new-query" required />' +
 										'<button class="search-button js-search-recipe">Search</button>' +
 									'</fieldset>' +
 								'</form>' +
@@ -112,7 +113,7 @@ function renderErrorMessage() {
 							'<form action="#" class="search-form">' +
 								'<fieldset name="search-recipes">' +
 									'<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query" required />' +
-									'<button class="search-button js-search-recipe">Search</button>' +
+									'<button class="search-button new-search-button js-search-recipe">Search</button>' +
 								'</fieldset>' +
 							'</form>' +
 						'</div>' +
