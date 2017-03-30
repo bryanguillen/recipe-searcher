@@ -13,6 +13,12 @@ function resetState(state) {
 	state.currentQuery = null; 
 }
 
+function getNewIndices(state) {
+	//fetching new data from api
+	state.from += 5;
+	state.to += 5;
+}
+
 function getDataFromAPI(searchTerm, callback) {
 	var settings = {
 		url: 'https://api.edamam.com/search',
@@ -30,21 +36,25 @@ function getDataFromAPI(searchTerm, callback) {
 }
 
 function displayDataFromAPI(data) {
-	//hits is array that contains the recipes..
+	//hits is array that contains the search results.
 	var recipes = data.hits;
 	var length = recipes.length; //if length === 0, no recipes were found for searchTerm
 	var result = '';
 	if(length > 0) {
 		recipes.forEach(function(item) {
-			var recipeName = item.recipe.label;
-			var img = item.recipe.image;
-			var servings = item.recipe.yield;
-			var caloricIntake = Math.floor(item.recipe.calories / servings); //calories per serving
-			var healthTags = item.recipe.healthLabels.join(', '); 
-			var ingredients = item.recipe.ingredientLines.join(', ');
-			result += createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, ingredients);
+			var item = item.recipe //recipe array contains all of the relevant information
+			var recipe = {
+				recipeName: item.label, 
+				img: item.image, 
+				servings: item.yield, 
+				caloricIntake: Math.floor(item.calories / item.yield), 
+				healthTags: item.healthLabels.join(', '),
+				ingredients: item.ingredientLines.join(', ')
+			}
+			var {recipeName, img, servings, caloricIntake, healthTags, ingredients} = recipe;
+			result += getRecipeTemplate({recipeName, img, servings, caloricIntake, healthTags, ingredients});
 		});
-		renderRecipes(result);
+		renderResults(result);
 	}
 	else{
 		renderErrorMessage();
@@ -52,55 +62,11 @@ function displayDataFromAPI(data) {
 }
 
 //dom manipulation 
-function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, ingredients) {
-	return   	'<div class="row recipe">' +
-					'<div class="col-12">' +
-						'<div class="row">' +
-							'<div class="col-12 recipe-label">' + recipeName  + '</div>' +
-						'</div>' +
-						'<div class="row recipe-summary">' +
-							'<div class="col-6 img">' +
-								'<a href="' + img + '" data-lightbox="recipe-pic"> <img src="' + img + '"></a>' +
-								'<span class="information">(Click To Enlarge)</span>' +
-							'</div>' +
-							'<div class="col-6 recipe-information">' +
-								'<span class="information"><strong>Servings:</strong> ' + servings + '</span>' +
-								'<span class="information"><strong>Calories/serving:</strong> ' + caloricIntake + '</span>' +
-								'<span class="information health-label-section"><strong>Health Labels:</strong></span>' +
-								'<span class="information health-label">' + healthTags + '</span>' +
-								'<button class="information show-ingredients js-click-show"><span>See Ingredients</span></button>' +
-							'</div>' +
-						'</div>' +
-						'<div class="row ingredients-list js-display-ingredients">' +
-							'<div class="col-12 ingredients-list">' +
-								'<span class="ingredients"><strong>Ingredients:</strong> ' +  ingredients +  '</span>' +
-							'</div>' +
-						'</div>' +
-					'</div>' +
-				'</div>';
-}
-
-function renderRecipes(recipes) {
+//getTemplate functions in templates.js
+function renderResults(recipes) {
 	//first check if this is a new search. 
 	if(state.from < 5) {
-		$('main').html( '<div class="search-container">' +
-						'<div class="row new-search">' +
-							'<div class="col-12">' +
-								'<form action="#" class="search-form">' +
-									'<fieldset name="search-recipes" class="new-search-fieldset">' +
-										'<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query new-query" required />' +
-										'<button class="search-button js-search-recipe">Search</button>' +
-									'</fieldset>' +
-								'</form>' +
-							'</div>' +
-						'</div>' +
-						'</div>'+
-						'<div class="recipe-container">' + 
-							recipes + 
-						'</div>' +
-						'<div class="more-recipes">' +
-							'<button class="more-recipes-button js-more-recipes">More Recipes</button>' +
-						'</div>');
+		$('main').html(getResultsTemplate(recipes));
 	}
 	else {
 		$('.recipe-container').append(recipes);
@@ -108,30 +74,14 @@ function renderRecipes(recipes) {
 }
 
 function renderErrorMessage() {
-	$('main').html(
-					'<div class="row new-search">' +
-						'<div class="col-12">' +
-							'<form action="#" class="search-form">' +
-								'<fieldset name="search-recipes">' +
-									'<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query" required />' +
-									'<button class="search-button new-search-button js-search-recipe">Search</button>' +
-								'</fieldset>' +
-							'</form>' +
-						'</div>' +
-					'</div>' +
-					'<div class="row error-msg">' + 
-						'<div class="col-12">' +
-							'<h1>No Results Found</h1>' + 
-						'</div>' + 
-					'</div>');
+	$('main').html(getErrorTemplate());
 }
 
 //handlers 
 function moreRecipesHandler() {
 	$('main').on('click', '.js-more-recipes', function(event) {
 		event.preventDefault();
-		state.from += 5;
-		state.to += 5;
+		getNewIndices(state);
 		getDataFromAPI(state.currentQuery, displayDataFromAPI);
 	});
 }
