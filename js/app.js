@@ -13,12 +13,6 @@ function resetState(state) {
 	state.currentQuery = null; 
 }
 
-function getNewIndices(state) {
-	//fetching new data from api
-	state.from += 5;
-	state.to += 5;
-}
-
 function getDataFromAPI(searchTerm, callback) {
 	var settings = {
 		url: 'https://api.edamam.com/search',
@@ -42,7 +36,7 @@ function displayDataFromAPI(data) {
 	var result = '';
 	if(length > 0) {
 		recipes.forEach(function(item) {
-			var item = item.recipe //recipe array contains all of the relevant information
+			var item = item.recipe //recipe array contains all of the relevant information for instance of hits array above
 			var recipe = {
 				recipeName: item.label, 
 				img: item.image, 
@@ -81,7 +75,8 @@ function renderErrorMessage() {
 function moreRecipesHandler() {
 	$('main').on('click', '.js-more-recipes', function(event) {
 		event.preventDefault();
-		getNewIndices(state);
+		state.from += 5;
+		state.to += 5;
 		getDataFromAPI(state.currentQuery, displayDataFromAPI);
 	});
 }
