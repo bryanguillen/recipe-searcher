@@ -6,17 +6,18 @@ body * {
 body {
 	font-family: 'Comic Sans MS';
 	background-color: #f5f5f0;
+	padding-bottom: 5px;
 }
 
 button {
 	display: inline-block;
 }
 
-/*** initial styling for the landing page ***/
 fieldset {
 	border: 0;
 }
 
+/*** initial styling for the landing page ***/
 .welcoming-container {
 	text-align: center;
 	height: 100vh;
@@ -42,22 +43,49 @@ fieldset {
 	color: white;
 }
 
+/** input fields and all of the buttons for projects below **/
+
 .food-query {
 	width: calc(100% / 3);
 	padding-left: 15px;
 	border: 1px solid orange;
-}
-
-.search-button {
-	width: calc(100% / 5);
-	background-color: orange;
-	border: 1px solid white;
-	color: white;
+	border-radius: 5%;
 }
 
 .food-query, .search-button {
 	height: 50px;
+}
+
+.search-button, .more-recipes-button, .show-ingredients {
+	background-color: orange;
+	border: 1px solid white;
+	color: white;
 	border-radius: 5%;
+}
+
+.search-button {
+	width: calc(100% / 5);
+}
+
+.new-search {
+	width: 100%;
+}
+
+.new-search-button {
+	margin-left: 10px;
+}
+
+.new-search-fieldset {
+	padding-left: 0px;
+}
+
+.more-recipes-button {
+	height: 50px;
+}
+
+.show-ingredients {
+	height: 35px;
+	margin: 0 auto;
 }
 
 /*** recipe list ***/
@@ -110,11 +138,12 @@ img {
 
 .more-recipes {
 	text-align: center;
-	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
 }
 
-.nav-container {
+.search-container {
 	position: fixed;
 	top: 0px;
 	width: 100%;
@@ -122,36 +151,7 @@ img {
 	background-color: #f5f5f0; 
 }
 
-.new-search {
-	width: 100%;
-}
-
-.new-search-button {
-	margin-left: 10px;
-}
-
-.new-search-fieldset {
-	padding-left: 0px;
-}
-
-.more-recipes-button, .show-ingredients {
-	background-color: orange;
-	border: 1px solid white;
-	color: white;
-	border-radius: 5%;
-}
-
-.more-recipes-button {
-	height: 50px;
-}
-
-.show-ingredients {
-	height: 35px;
-	margin: 0 auto;
-}
-
 /*** media queries **/
-
 @media only screen and (max-width: 640px) {
 	.recipe-container {
 		text-align: center;
@@ -159,7 +159,7 @@ img {
 
 	.recipe{
 		margin-top: 50px;
-		margin-bottom: 50px
+		margin-bottom: 50px;
 	}
 
 	.welcoming-container {
@@ -171,12 +171,12 @@ img {
 	}
 
 	.search-button {
-		margin-top: 10px
+		margin-top: 10px;
 	}
 
 	.recipe-container, .more-recipes {
 		position: relative;
-		top: 50px;
+		top: 75px;
 	}
 }
 
