@@ -1,5 +1,6 @@
-//state
+//state mgmt
 var state = {
+	//from through to are the indices of recipes we would like to access from api. 
 	from: 0,
 	to: 5,
 	currentQuery: null
@@ -12,11 +13,9 @@ function resetState(state) {
 	state.currentQuery = null; 
 }
 
-var URL_END_POINT = 'https://api.edamam.com/search';
-
 function getDataFromAPI(searchTerm, callback) {
 	var settings = {
-		url: URL_END_POINT,
+		url: 'https://api.edamam.com/search',
 		data: {
 			app_id: 'b911c081',
 			app_key: 'ada25e7ca4cf4253efd61e25c30c8fa3',
@@ -33,7 +32,7 @@ function getDataFromAPI(searchTerm, callback) {
 function displayDataFromAPI(data) {
 	//hits is array that contains the recipes..
 	var recipes = data.hits;
-	var length = recipes.length;
+	var length = recipes.length; //if length === 0, no recipes were found for searchTerm
 	var result = '';
 	if(length > 0) {
 		recipes.forEach(function(item) {
@@ -41,7 +40,7 @@ function displayDataFromAPI(data) {
 			var img = item.recipe.image;
 			var servings = item.recipe.yield;
 			var caloricIntake = Math.floor(item.recipe.calories / servings); //calories per serving
-			var healthTags = item.recipe.healthLabels.join(', ');
+			var healthTags = item.recipe.healthLabels.join(', '); 
 			var ingredients = item.recipe.ingredientLines.join(', ');
 			result += createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, ingredients);
 		});
@@ -82,8 +81,9 @@ function createRecipeHTML(recipeName, img, servings, caloricIntake, healthTags, 
 }
 
 function renderRecipes(recipes) {
+	//first check if this is a new search. 
 	if(state.from < 5) {
-		$('main').html( '<div class="nav-container">' +
+		$('main').html( '<div class="search-container">' +
 						'<div class="row new-search">' +
 							'<div class="col-12">' +
 								'<form action="#" class="search-form">' +
@@ -126,7 +126,7 @@ function renderErrorMessage() {
 					'</div>');
 }
 
-//handler 
+//handlers 
 function moreRecipesHandler() {
 	$('main').on('click', '.js-more-recipes', function(event) {
 		event.preventDefault();
