@@ -18,9 +18,7 @@ Below there are just some screenshots of the app on a desktop and smart phone.
 
 ![alt text](https://github.com/bryg217/recipe-searcher/blob/master/screenshots/Screenshot%20(103).png)
 
-![alt text](https://github.com/bryg217/recipe-searcher/blob/master/screenshots/query-result.png)
-
-![alt text](https://github.com/bryg217/recipe-searcher/blob/master/screenshots/easter-egg-ingredients.png)
+![alt text](https://github.com/bryg217/recipe-searcher/blob/master/screenshots/mobile-search.png)
 
 ## Techonology Used
 
