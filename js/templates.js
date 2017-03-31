@@ -51,7 +51,7 @@ function getErrorTemplate() {
 	return	`<div class="row new-search">
 				<div class="col-12">
 					<form action="#" class="search-form">
-						<fieldset name="search-recipes">
+						<fieldset name="search-recipes" class="new-search-fieldset">
 							<input type="text" name="food-query" placeholder="eg. (chicken, broccoli)" class="food-query" required />
 							<button class="search-button new-search-button js-search-recipe">Search</button>
 						</fieldset>
