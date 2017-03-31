@@ -8,6 +8,10 @@ body {
 	background-color: #f5f5f0;
 }
 
+main {
+	position: relative;
+}
+
 button {
 	display: inline-block;
 }
@@ -22,9 +26,9 @@ img {
 }
 
 .welcoming-container {
-	text-align: center;
 	height: 100vh;
-	padding-top: 200px;
+	width: 100vw;
+	display: table;
 	background: linear-gradient(
       				rgba(0, 0, 0, 0.7),
       				rgba(0, 0, 0, 0.7)
@@ -44,6 +48,15 @@ img {
 
 .welcoming-container h1, .welcoming-container h4 {
 	color: white;
+}
+
+.welcoming-inner {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.welcoming-headers {
+	text-align: center;
 }
 
 .food-query {
