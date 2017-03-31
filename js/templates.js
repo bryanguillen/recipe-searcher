@@ -27,7 +27,7 @@ function getRecipeTemplate({recipeName, img, servings, caloricIntake, healthTags
 }
 
 function getResultsTemplate(recipe) {
-	return	`<div class="search-container">
+	return	`<div class="new-search-container">
 				<div class="row new-search">
 					<div class="col-12"> 
 						<form action="#" class="search-form">

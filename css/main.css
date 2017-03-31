@@ -16,7 +16,11 @@ fieldset {
 	border: 0;
 }
 
-/*** initial styling for the landing page ***/
+img {
+	height: 200px;
+	width: 200px
+}
+
 .welcoming-container {
 	text-align: center;
 	height: 100vh;
@@ -42,8 +46,6 @@ fieldset {
 	color: white;
 }
 
-/** input fields and all of the buttons for projects below **/
-
 .food-query {
 	width: calc(100% / 3);
 	padding-left: 15px;
@@ -51,7 +53,7 @@ fieldset {
 	border-radius: 5%;
 }
 
-.food-query, .search-button {
+.food-query, .search-button, .more-recipes-button {
 	height: 50px;
 }
 
@@ -70,16 +72,8 @@ fieldset {
 	width: 100%;
 }
 
-.new-search-button {
-	margin-left: 10px;
-}
-
 .new-search-fieldset {
 	padding-left: 0px;
-}
-
-.more-recipes-button {
-	height: 50px;
 }
 
 .show-ingredients {
@@ -87,10 +81,9 @@ fieldset {
 	margin: 0 auto;
 }
 
-/*** recipe list ***/
 .recipe-container, .more-recipes {
 	position: relative;
-	top: 75px;
+	top: 85px;
 }
 
 .recipe-container {
@@ -110,11 +103,6 @@ fieldset {
 
 .recipe-label {
 	font-size: 1.5em;
-}
-
-img {
-	height: 200px;
-	width: 200px
 }
 
 .recipe-information {
@@ -137,12 +125,10 @@ img {
 
 .more-recipes {
 	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 }
 
-.search-container {
+.new-search-container {
 	position: fixed;
 	top: 0px;
 	width: 100%;
@@ -190,5 +176,9 @@ img {
 
 	.new-query {
 		margin-right: 15px;
+	}
+
+	.new-search-button {
+		margin-left: 10px;
 	}
 }
