@@ -7,7 +7,7 @@ function getRecipeTemplate({recipeName, img, servings, caloricIntake, healthTags
 						<div class="row recipe-summary">
 							<div class="col-6 img">
 								<a href="${img}" data-lightbox="recipe-pic"> <img src="${img}"></a>
-								<span class="information">(Click To Enlarge)</span>
+								<span class="information">(Click To See Picture)</span>
 							</div>
 							<div class="col-6 recipe-information">
 								<span class="information"><strong>Servings:</strong> ${servings} </span>
