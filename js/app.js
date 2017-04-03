@@ -1,6 +1,6 @@
 //state mgmt
 var state = {
-	//from through to are the indices of recipes we would like to access from api. 
+	//from through to are the indices of recipes we would like to access from api.
 	from: 0,
 	to: 5,
 	currentQuery: null
@@ -10,10 +10,10 @@ function resetState(state) {
 	//reset state for when new search is submitted
 	state.from = 0;
 	state.to = 5;
-	state.currentQuery = null; 
+	state.currentQuery = null;
 }
 
-function getDataFromAPI(searchTerm, callback) {
+function getDataFromAPI(searchTerm) {
 	var settings = {
 		url: 'https://api.edamam.com/search',
 		data: {
@@ -23,10 +23,9 @@ function getDataFromAPI(searchTerm, callback) {
 			from: state.from,
 			to: state.to
 		},
-		success: callback,
 		dataType: 'jsonp'
 	}
-	$.ajax(settings);
+	return $.ajax(settings);
 }
 
 function displayDataFromAPI(data) {
@@ -38,15 +37,14 @@ function displayDataFromAPI(data) {
 		recipes.forEach(function(item) {
 			var item = item.recipe //recipe array contains all of the relevant information for instance of hits array above
 			var recipe = {
-				recipeName: item.label, 
-				img: item.image, 
-				servings: item.yield, 
-				caloricIntake: Math.floor(item.calories / item.yield), 
+				recipeName: item.label,
+				img: item.image,
+				servings: item.yield,
+				caloricIntake: Math.floor(item.calories / item.yield),
 				healthTags: item.healthLabels.join(', '),
 				ingredients: item.ingredientLines.join(', ')
 			}
-			var {recipeName, img, servings, caloricIntake, healthTags, ingredients} = recipe;
-			result += getRecipeTemplate({recipeName, img, servings, caloricIntake, healthTags, ingredients});
+			result += getRecipeTemplate(recipe);
 		});
 		renderResults(result);
 	}
@@ -55,10 +53,10 @@ function displayDataFromAPI(data) {
 	}
 }
 
-//dom manipulation 
+//dom manipulation
 //getTemplate functions in templates.js
 function renderResults(recipes) {
-	//first check if this is a new search. 
+	//first check if this is a new search.
 	if(state.from < 5) {
 		$('main').html(getResultsTemplate(recipes));
 	}
@@ -67,17 +65,17 @@ function renderResults(recipes) {
 	}
 }
 
-function renderErrorMessage() {
+const renderErrorMessage = () => {
 	$('main').html(getErrorTemplate());
-}
+};
 
-//handlers 
+//handlers
 function moreRecipesHandler() {
 	$('main').on('click', '.js-more-recipes', function(event) {
 		event.preventDefault();
 		state.from += 5;
 		state.to += 5;
-		getDataFromAPI(state.currentQuery, displayDataFromAPI);
+		getDataFromAPI(state.currentQuery).then(displayDataFromAPI);
 	});
 }
 
@@ -94,7 +92,7 @@ function submitHandler() {
 		resetState(state);
 		var query = $('main').find('.food-query').val();
 		state.currentQuery = query //keep track of query in state global
-		getDataFromAPI(query, displayDataFromAPI);
+		getDataFromAPI(query).then(displayDataFromAPI);
 	});
 }
 
